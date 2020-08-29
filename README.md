@@ -1,5 +1,5 @@
 # Smart Search and Filter on Movies Data
-A small web service for smart search a filter, implemented using Java, Spring boot, Spring data, Hibernate and related technology stack.
+A small web service for smart search and filter, implemented using Java, Spring boot, Spring data, Hibernate and related technology stack.
 
 Liquibase is used for designing and creating the required database components i.e tables, relations, keys.
 
