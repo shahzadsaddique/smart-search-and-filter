@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1595389100" author="shahzad">
+        <createTable tableName="movie">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="rank" type="integer"/>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="text"/>
+            <column name="director" type="varchar(255)"/>
+            <column name="year" type="integer"/>
+            <column name="runtime_minutes" type="integer"/>
+            <column name="rating" type="decimal"/>
+            <column name="votes" type="integer"/>
+            <column name="revenue_millions" type="decimal"/>
+            <column name="metascore" type="decimal"/>
+        </createTable>
+
+        <addUniqueConstraint
+                columnNames="title, year, runtime_minutes"
+                constraintName="unique_movie_constraint"
+                tableName="movie"
+        />
+
+        <createTable tableName="genre">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints unique="true" uniqueConstraintName="unique_genre_name"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="movie_genre">
+            <column name="movie_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_movie_genre_movie_id"
+                             references="movie(id)"/>
+            </column>
+            <column name="genre_id" type="bigint">
+            <constraints nullable="false"
+                         foreignKeyName="fk_movie_genre_genre_id"
+                         references="genre(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="actor">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints unique="true" uniqueConstraintName="unique_actor_name"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="movie_actor">
+            <column name="movie_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_movie_actor_movie_id"
+                             references="movie(id)"/>
+            </column>
+            <column name="actor_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_movie_genre_actor_id"
+                             references="actor(id)"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
