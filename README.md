@@ -3,7 +3,7 @@ A small web service for smart search and filter, implemented using Java, Spring 
 
 Liquibase is used for designing and creating the required database components i.e tables, relations, keys.
 
-##Features
+**Features**
 1. Import movies data from a CSV file
 2. Advance search and filters, on a single value, multiple values, on a number, range of numbers. Search and filter implemented using spring data search specification.
 
